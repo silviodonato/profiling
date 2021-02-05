@@ -19,6 +19,8 @@ fi
 if [ "X$WORKSPACE" != "X" ]; then
   cd $WORKSPACE/$CMSSW_v/$PROFILING_WORKFLOW
 else
+  source /cvmfs/grid.cern.ch/etc/profile.d/setup-cvmfs-ui.sh
+  grid-proxy-init
   export VO_CMS_SW_DIR=/cvmfs/cms.cern.ch
   echo "$VO_CMS_SW_DIR $SCRAM_ARCH"
   source $VO_CMS_SW_DIR/cmsset_default.sh
@@ -35,13 +37,14 @@ if [ "X$WORKSPACE" != "X" ]; then
   export WRAPPER=$WORKSPACE/profiling/circles-wrapper.py
 fi
 
+
 export DARSHAN_LOGPATH=$DW_JOB_STRIPED/darshan-logs
 y=$(date +%Y)
 m=$(date +%m)
 d=$(date +%d)
 mkdir -p ${DARSHAN_LOGPATH}/$y/${m/0/}/${d/0/}
 export DARSHAN_ENABLE_NONMPI=1
-export DARSHAN_EXCLUDE_DIRS=/cvmfs
+export DARSHAN_EXCLUDE_DIRS=/cvmfs,/tmp,/etc,/dev,/proc,/usr,/lib64,/lib
 export LC_ALL=C
 
 echo step1

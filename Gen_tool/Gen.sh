@@ -17,8 +17,8 @@ echo $SCRAM_ARCH
 if [ "X$RELEASE_FORMAT" == "X" -a  "X$CMSSW_IB" == "X" ]; then
   export VO_CMS_SW_DIR=/cvmfs/cms.cern.ch
   source $VO_CMS_SW_DIR/cmsset_default.sh
-#  source /cvmfs/grid.cern.ch/etc/profile.d/setup-cvmfs-ui.sh
-#  grid-proxy-init
+  source /cvmfs/grid.cern.ch/etc/profile.d/setup-cvmfs-ui.sh
+  grid-proxy-init
   unset PYTHONPATH
   export LC_ALL=C
   echo "Start install ${CMSSW_v} ..."
